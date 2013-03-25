@@ -12,8 +12,8 @@ The layout-with-tables killer.
 
 **Existing solutions:**
  
- * pre-define templates & content positions
- * use tables within TinyMCE Content editor
+ * pre-define template(s) and additional db fields for holding content.
+ * use tables within TinyMCE Content editor.
  * define content in seperate DataObjects, eg [Page Elements Module](http://page-elements.com)
  
 **New solution:** use the CSS grids we've come to know and love
@@ -33,8 +33,8 @@ This idea relies on the fact that most grid systems are the same. Most have:
 
  * Predefined number of columns
  * HTML structure & CSS classes for defining grid layout
- 
- For example, here is the [bootstrap structure](http://twitter.github.com/bootstrap/scaffolding.html#gridSystem)
+
+For example, here is the [bootstrap structure](http://twitter.github.com/bootstrap/scaffolding.html#gridSystem)
  
 ```html
 <div class="row">
@@ -43,7 +43,7 @@ This idea relies on the fact that most grid systems are the same. Most have:
 </div>
 ```
 
-converting this to a SS-generic approach:
+Converted to a generic SilverStripe template:
 
 ```
 <div class="row">
