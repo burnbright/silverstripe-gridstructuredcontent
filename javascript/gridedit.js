@@ -2,23 +2,19 @@
 
 	$.entwine("ss",function($){
 	
-		var delimiter = "<p>[SPLIT]</p>"; //TODO: load this from php config
 		var contentparts = [];
 		var currentcontent = 0;
-		
-		//split all Content into contentparts array
-		var content = $("#Form_EditForm_Content").val();
-		if(content !== "") {
-			contentparts = content.split(delimiter);
-		}
 
 		$("#GridContent textarea").entwine({
+			delimiter: function(){
+				return this.attr("data-gscdelimiter");
+			},
 			oneditorinit: function(){
 				currentcontent = 0;
 				this._super();
-				this.loadpart(currentcontent);
+				this.retrievepart(currentcontent);
 			},
-			loadpart: function(pos){
+			retrievepart: function(pos){
 				var ed = this.getEditor();
 				if(contentparts[pos]){
 					ed.setContent(contentparts[pos]);
@@ -31,9 +27,14 @@
 				var ed = this.getEditor();
 				contentparts[pos] = ed.getContent();
 			},
+			loadparts: function(content){
+				if(content !== "") {
+					contentparts = content.split(this.delimiter());
+				}
+			},
 			saveparts: function(){
 				var ed = this.getEditor();
-				$("#Form_EditForm_Content").val(contentparts.join(delimiter));
+				$("#Form_EditForm_Content").val(contentparts.join(this.delimiter()));
 			},
 			'from .cms-edit-form': {
 				onbeforesubmitform: function(e) {
@@ -49,9 +50,13 @@
 			onchange: function(){
 				$("#GridContent textarea").storepart(currentcontent);
 				currentcontent = $('#GridPos select').val();
-				$("#GridContent textarea").loadpart(currentcontent);
+				$("#GridContent textarea").retrievepart(currentcontent);
 			}
 		});
+		
+		//split all Content into contentparts array
+		var content = $("#Form_EditForm_Content").val();
+		$("#GridContent textarea").loadparts(content);
 
 	});
 	

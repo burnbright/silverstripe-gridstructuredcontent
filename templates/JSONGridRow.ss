@@ -1,0 +1,1 @@
+{<% if Columns %>"cols":[<% loop Columns %>{"width":$Width,"content":"$Content"}<% if Last %><% else %>,<% end_if %><% end_loop %>]<% end_if %>}

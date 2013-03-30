@@ -1,0 +1,19 @@
+{
+	"width":6,
+	"rows":[
+		{"cols":[
+			{"width":2},
+			{"width":4,
+				"rows":[
+					{"cols":[
+						{"width":2},
+						{"width":2}
+					]},
+					{"cols":[
+						{"width":4}
+					]}
+				]
+			}
+		]}
+	]
+}
