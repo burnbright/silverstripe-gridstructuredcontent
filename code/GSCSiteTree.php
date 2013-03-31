@@ -14,14 +14,14 @@ class GSCSiteTree extends DataExtension{
 	function updateCMSFields(FieldList $fields){
 		$fields->addFieldToTab("Root.Grid", TextareaField::create("GridLayout"));
 		
-		//TODO: introduce grid box selector
-		$values = array(1,2,3,4,5,6,7);
-		$fields->addFieldToTab("Root.Main",DropdownField::create("GridPos","Position",$values),"Content");
-		$fields->addFieldToTab("Root.Main",
-			HtmlEditorField::create("GridContent")->setAttribute("data-gscdelimiter",GSCRenderer::$defaultdelimiter)
-		,"Content");
-		$fields->addFieldToTab("Root.Main",HiddenField::create("Content"));
-		Requirements::javascript("gridstructuredcontent/javascript/gridedit.js");
+		if($this->owner->GridLayout){
+			$fields->addFieldToTab("Root.Main",GridSelectionField::create("GridPos","Content Position",$this->owner->GridLayout),"Content");
+			$fields->addFieldToTab("Root.Main",
+				HtmlEditorField::create("GridContent","Content")->setAttribute("data-gscdelimiter",GSCRenderer::$defaultdelimiter)
+			,"Content");
+			$fields->addFieldToTab("Root.Main",HiddenField::create("Content"));
+			Requirements::javascript("gridstructuredcontent/javascript/gridedit.js");
+		}
 	}
 	
 	function GridContent($pos = null){

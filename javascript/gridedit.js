@@ -11,6 +11,7 @@
 			},
 			oneditorinit: function(){
 				currentcontent = 0;
+				this.loadparts($("#Form_EditForm_Content").val());
 				this._super();
 				this.retrievepart(currentcontent);
 			},
@@ -40,23 +41,20 @@
 				onbeforesubmitform: function(e) {
 					this.storepart(currentcontent);
 					this.saveparts();
+					contentparts = [];
 					this._super(e);
 				}
 			}
 			
 		});
 		
-		$('#GridPos select').entwine({
+		$('#GridPos input').entwine({
 			onchange: function(){
 				$("#GridContent textarea").storepart(currentcontent);
-				currentcontent = $('#GridPos select').val();
+				currentcontent = $('#GridPos input:checked').val();
 				$("#GridContent textarea").retrievepart(currentcontent);
 			}
-		});
-		
-		//split all Content into contentparts array
-		var content = $("#Form_EditForm_Content").val();
-		$("#GridContent textarea").loadparts(content);
+		});		
 
 	});
 	

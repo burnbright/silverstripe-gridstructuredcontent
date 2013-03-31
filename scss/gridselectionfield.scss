@@ -1,0 +1,31 @@
+@import "compass/css3";
+.gridselectionfield{
+
+	float:left;
+	
+	.row{
+		clear:both;
+	}
+	
+	.row > div{
+		float: left;
+		text-align: center;
+		background: #fff;
+		border: 1px solid grey;
+		margin: 0 2px 2px 0;
+		@include border-radius(4px,4px);
+	}
+	
+	.content{
+		background-color: green;
+	}
+	
+	$pct: 512px / 12;
+	
+	@for $i from 1 through 12 {
+		.span#{$i} {
+			width: $i * $pct - 4px;
+		}
+	}
+
+}

@@ -22,21 +22,25 @@ class GSCRenderer{
 		return $this->renderRows($maincolumn->rows,new ArrayIterator($splitcontent));
 	}
 	
-	protected function renderRows($rows, ArrayIterator $content){
+	protected function renderRows($rows, ArrayIterator $splitcontent, $pos = -1){
 		$output = "";
 		foreach($rows as $row){
 			if($row->cols){
 				$columns = array();
 				foreach($row->cols as $col){
-					$nextcontent = $content->current();
-					if(!isset($col->rows)){
-						$content->next(); //advance iterator if there are no sub-rows
+					$nextcontent = $splitcontent->current();
+					$isholder = !isset($col->rows);
+					if($isholder){
+						$splitcontent->next(); //advance iterator if there are no sub-rows
+						$pos++;
 					}
 					$width = $col->width ? (int)$col->width : 1; //width is at least 1
 					$columns[] = new ArrayData(array(
 						"Width" => $width,
 						"EnglishWidth" => $this->englishWidth($width),
-						"Content" => isset($col->rows) ? $this->renderRows($col->rows, $content) : $nextcontent
+						"Content" => $isholder ? $nextcontent : $this->renderRows($col->rows, $splitcontent, $pos),
+						"IsHolder" => $isholder,
+						"GridPos" => $pos
 					));
 				}
 				$output .= ArrayData::create(array(

@@ -90,3 +90,7 @@ The minor differences between grid systems should be handled by using a slightly
  * https://gridsetapp.com/features/
  * http://www.3x4grid.com/
  * http://gridster.net/
+ 
+### Similar ideas
+
+ * http://wordpress.org/extend/plugins/advanced-wp-columns/
