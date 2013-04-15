@@ -1,31 +1,40 @@
+/*
+ This module doesn't use a compass config file. Use this command instead:
+ compass compile --sass-dir=gridstructuredcontent/scss/ --css-dir=gridstructuredcontent/css -e production
+*/
 @import "compass/css3";
 .gridselectionfield{
-
 	float:left;
-	
 	.row{
 		clear:both;
 	}
-	
 	.row > div{
 		float: left;
 		text-align: center;
 		background: #fff;
-		border: 1px solid grey;
+		border: 1px solid #B3B3B3;
 		margin: 0 2px 2px 0;
 		@include border-radius(4px,4px);
 	}
-	
 	.content{
 		background-color: green;
 	}
-	
 	$pct: 512px / 12;
-	
 	@for $i from 1 through 12 {
 		.span#{$i} {
 			width: $i * $pct - 4px;
 		}
 	}
-
+	input{
+		display:block;
+		width:100%;
+		height:14px;
+		line-height:14px;
+		font-size:14px;
+		padding:7px;
+		margin: 0;
+		&:checked{
+			background-color:#BEEBFF;
+		}
+	}
 }
