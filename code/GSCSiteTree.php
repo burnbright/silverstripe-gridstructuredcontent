@@ -29,4 +29,8 @@ class GSCSiteTree extends DataExtension{
 		return $renderer->render();
 	}
 	
+	function contentcontrollerInit(){
+		$this->owner->Content = $this->GridContent();
+	}
+	
 }
