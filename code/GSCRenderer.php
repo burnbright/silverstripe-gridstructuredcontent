@@ -37,8 +37,13 @@ class GSCRenderer{
 					if($isholder){
 						$splitcontent->next(); //advance iterator if there are no sub-rows
 						$pos++;
+						//wrap split content in a HTMLText object
+						$dbObject = DBField::create_field('HTMLText', $nextcontent, "Content");
+						$dbObject->setOptions(array("shortcodes" => true));
+						$nextcontent = $dbObject;
 					}
 					$width = $col->width ? (int)$col->width : 1; //width is at least 1
+					
 					$columns[] = new ArrayData(array(
 						"Width" => $width,
 						"EnglishWidth" => $this->englishWidth($width),
