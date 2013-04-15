@@ -27,6 +27,7 @@ class GSCRenderer{
 	
 	protected function renderRows($rows, ArrayIterator $splitcontent, $pos = -1){
 		$output = "";
+		$rownumber = 0;
 		foreach($rows as $row){
 			if($row->cols){
 				$columns = array();
@@ -43,11 +44,14 @@ class GSCRenderer{
 						"EnglishWidth" => $this->englishWidth($width),
 						"Content" => $isholder ? $nextcontent : $this->renderRows($col->rows, $splitcontent, $pos),
 						"IsHolder" => $isholder,
-						"GridPos" => $pos
+						"GridPos" => $pos,
+						"ExtraClasses" => isset($col->extraclasses) ? $col->extraclasses : null
 					));
 				}
 				$output .= ArrayData::create(array(
-									"Columns" => new ArrayList($columns)
+									"Columns" => new ArrayList($columns),
+									"RowNumber" => (string)$rownumber++,
+									"ExtraClasses" => isset($row->extraclasses) ? $row->extraclasses : null
 								))->renderWith($this->template);
 			}else{
 				//every row should have columns!!
