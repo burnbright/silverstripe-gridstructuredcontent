@@ -14,6 +14,9 @@ class GSCRenderer{
 	}
 	
 	function render(){
+		if(!$this->grid){
+			return $this->content;
+		}
 		$splitcontent = $this->getSplitContent();
 		$maincolumn = json_decode($this->grid);
 		if($maincolumn === null){
