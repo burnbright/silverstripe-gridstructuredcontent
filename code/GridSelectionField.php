@@ -19,4 +19,10 @@ class GridSelectionField extends FormField{
 		return $renderer->render();
 	}
 	
+	public function performReadonlyTransformation() {
+		$copy = $this->castedCopy('HiddenField');
+		$copy->setReadonly(true);
+		return $copy;
+	}
+
 }

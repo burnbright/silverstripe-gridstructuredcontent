@@ -15,11 +15,13 @@ class GSCSiteTree extends DataExtension{
 		$fields->addFieldToTab("Root.Grid", TextareaField::create("GridLayout"));
 		
 		if($this->owner->GridLayout){
-			$fields->addFieldToTab("Root.Main",GridSelectionField::create("GridPos","Content Position",$this->owner->GridLayout),"Content");
 			$fields->addFieldToTab("Root.Main",
-				HtmlEditorField::create("GridContent","Content")->setAttribute("data-gscdelimiter",GSCRenderer::$defaultdelimiter)
+				GridSelectionField::create("GridPos","Content Position",$this->owner->GridLayout)
 			,"Content");
-			$fields->addFieldToTab("Root.Main",HiddenField::create("Content"));
+			$fields->addFieldToTab("Root.Main",
+				HtmlEditorField::create("GridContent","Content")->setAttribute("data-gscdelimiter", GSCRenderer::$defaultdelimiter)
+			,"Content");
+			$fields->addFieldToTab("Root.Main", GSCHiddenContentField::create("Content"),"GridContent");
 			Requirements::javascript("gridstructuredcontent/javascript/gridedit.js");
 		}
 	}
