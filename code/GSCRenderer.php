@@ -2,14 +2,15 @@
 
 class GSCRenderer{
 	
-	static $defaultdelimiter = "<!-- GSCdelimiter -->";
+	public static $defaultdelimiter = "<!-- GSCdelimiter -->";
+	public static $defaulttemplate = "GSCRow";
 	
 	protected $grid,$content,$template, $delimiter;
 	
-	function __construct($grid, $content, $template = "GSCRow", $delimiter = null){
+	function __construct($grid, $content, $template = null, $delimiter = null){
 		$this->grid = $grid;
 		$this->content = $content;
-		$this->template = $template;
+		$this->template = $template ? $template : self::$defaulttemplate;
 		$this->delimiter = ($delimiter) ? $delimiter : self::$defaultdelimiter;
 	}
 	
