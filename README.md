@@ -15,6 +15,7 @@ The layout-with-tables killer.
  * pre-define template(s) and additional db fields for holding content.
  * use tables within TinyMCE Content editor.
  * define content in seperate DataObjects, eg [Page Elements Module](http://page-elements.com)
+ * [SilverStripe Blocks](https://github.com/sheadawson/silverstripe-blocks)
  
 **New solution:** use the CSS grids we've come to know and love
 
