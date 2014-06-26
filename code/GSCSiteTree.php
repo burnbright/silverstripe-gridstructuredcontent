@@ -11,7 +11,14 @@ class GSCSiteTree extends DataExtension {
 	);
 
 	public function updateSettingsFields(FieldList $fields) {
-		$fields->addFieldToTab("Root.Grid", TextareaField::create("GridLayout"));
+		if(class_exists('CodeEditorField')) {
+			$editorfield = CodeEditorField::create("GridLayout");
+			$editorfield->setMode('json');
+		}
+		else {
+			$editorfield = TextareaField::create("GridLayout");
+		}
+		$fields->addFieldToTab("Root.Grid", $editorfield);
 		return $fields;
 	}
 
