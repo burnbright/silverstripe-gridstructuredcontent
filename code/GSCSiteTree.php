@@ -17,6 +17,26 @@ class GSCSiteTree extends DataExtension {
 		} else {
 			$editorfield = TextareaField::create("GridLayout");
 		}
+		if (!$this->owner->GridLayout) {
+			$editorfield->setDescription('Use JSON to create a grid layout. Valid keys are : <strong>rows</strong>, <strong>cols</strong>, <strong>extraclass</strong> and <strong>width</strong>. An extra class can be applied
+to a row or a col.
+<br/><br/>
+Use the example below to get you started.
+<br/><br/>
+<pre>
+{
+	"rows":[
+		{
+		"cols":[
+			{"width":4},
+			{"width":4},
+			{"width":4}
+		]}
+	]
+}
+</pre>
+');
+		}
 		$fields->addFieldToTab("Root.Grid", $editorfield);
 		return $fields;
 	}
@@ -24,9 +44,9 @@ class GSCSiteTree extends DataExtension {
 	function updateCMSFields(FieldList $fields) {
 		if ($this->owner->GridLayout) {
 			$fields->addFieldToTab("Root.Main", GridSelectionField::create("GridPos", "Content Position", $this->owner->GridLayout)
-					, "Content");
+			  , "Content");
 			$fields->addFieldToTab("Root.Main", HtmlEditorField::create("GridContent", "Content")->setAttribute("data-gscdelimiter", GSCRenderer::$defaultdelimiter)
-					, "Content");
+			  , "Content");
 			$fields->addFieldToTab("Root.Main", GSCHiddenContentField::create("Content"), "GridContent");
 			Requirements::javascript("gridstructuredcontent/javascript/gridedit.js");
 		}
@@ -54,7 +74,7 @@ class GSCSiteTree extends DataExtension {
 			$json = json_encode($json);
 		}
 		$result = '';
-		$pos = 0;	  // indentation level
+		$pos = 0;   // indentation level
 		$strLen = strlen($json);
 		$indentStr = "\t";
 		$newLine = "\n";
