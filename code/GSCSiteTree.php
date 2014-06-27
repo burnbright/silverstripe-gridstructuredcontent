@@ -17,8 +17,16 @@ class GSCSiteTree extends DataExtension {
 		} else {
 			$editorfield = TextareaField::create("GridLayout");
 		}
-		if (!$this->owner->GridLayout) {
-			$editorfield->setDescription('Use JSON to create a grid layout. Valid keys are : <strong>rows</strong>, <strong>cols</strong>, <strong>extraclass</strong> and <strong>width</strong>. An extra class can be applied
+		$lines = 20;
+		
+		//set enough lines to see everything
+		if($this->owner->GridLayout) {
+			$lines = count(explode("\n", $this->owner->GridLayout));
+		}
+		$editorfield->setRows($lines);
+		
+		//set description to make the initial use less confusing
+		$editorfield->setDescription('Use JSON to create a grid layout. Valid keys are : <strong>rows</strong>, <strong>cols</strong>, <strong>extraclass</strong> and <strong>width</strong>. An extra class can be applied
 to a row or a col.
 <br/><br/>
 Use the example below to get you started.
@@ -36,7 +44,6 @@ Use the example below to get you started.
 }
 </pre>
 ');
-		}
 		$fields->addFieldToTab("Root.Grid", $editorfield);
 		return $fields;
 	}
