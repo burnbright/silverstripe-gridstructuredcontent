@@ -95,3 +95,9 @@ The minor differences between grid systems should be handled by using a slightly
 ### Similar ideas
 
  * http://wordpress.org/extend/plugins/advanced-wp-columns/
+
+# Screenshots
+
+![Editor](docs/images/editor.png)
+
+![Configuration](docs/images/config.png)
