@@ -26,7 +26,7 @@ class GSCRenderer{
 		return $this->renderRows($maincolumn->rows,new ArrayIterator($splitcontent));
 	}
 	
-	protected function renderRows($rows, ArrayIterator $splitcontent, $pos = -1){
+	protected function renderRows($rows, ArrayIterator $splitcontent, &$pos = -1){
 		$output = "";
 		$rownumber = 0;
 		foreach($rows as $row){
