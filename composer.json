@@ -1,5 +1,5 @@
 {
-	"name": "burnbright/gridstructuredcontent",
+	"name": "burnbright/silverstripe-gridstructuredcontent",
 	"type": "silverstripe-module",
 	"description": "Allows structuring SilverStripe CMS Content into CSS grid system layouts",
 	"require": {
