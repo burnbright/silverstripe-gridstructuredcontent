@@ -2,10 +2,6 @@
 
 The layout-with-tables killer.
 
-## Author
-
- * Jeremy Shipman (Jedateach) <jeremy@burnbright.net>
-
 ## Why
 
 **Problem:** structuring content beyond single columns.
